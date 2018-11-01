@@ -1,21 +1,26 @@
 html, body {
-  background-color: CornflowerBlue;
+  background-color: #36393E! important;
+  color:white !important;
 }
 
 h1 {
   text-align: center;
-  background-color: CornflowerBlue;
+  background-color: #36393E;
+  margin-top:30px!important;
+  margin-bottom:40px!important;
 }
 
 .wrapper {
   width: 100%;
   margin: 0 auto;
-  background-color: CornflowerBlue;
+  background-color: #36393E;
+  max-width:70%;
 }
 
 #alphabet{
   margin-top:30px;
   display:inline-block;
+  max-width:70%;
 }
 
 #alphabet li {
@@ -26,17 +31,17 @@ h1 {
   height: 20px;
   list-style: none;
   cursor: pointer;
-  background-color: CornflowerBlue;
+  background-color: #36393E;
 }
 
 #lives {
   text-align: center;
   font-size: 30px;
-  background-color: CornflowerBlue;
+  background-color: #36393E;
 }
 
 #hint{
-  background-color: CornflowerBlue;
+  background-color: #36393E;
   text-align:center;
   font-size:30px;
 }
@@ -50,7 +55,7 @@ h1 {
 }
 
 #input li{
-  background-color: CornflowerBlue;
+  background-color: #36393E;
   font-size:30px;
   list-style: none;
   display:inline-block;

@@ -9,8 +9,9 @@
   };
   firebase.initializeApp(config);
 
-  const txtEmail = document.getElementById('txtEmail');
+  const txtUser = document.getElementById('txtUser');
   const txtPass = document.getElementById('txtPass');
+  const txtEmail = document.getElementById('txtEmail');
   const btnLogin = document.getElementById('btnLogin');
   const btnSignup = document.getElementById('btnSignup');
   const btnLogout = document.getElementById('btnLogout');
@@ -49,10 +50,17 @@
   btnSignup.addEventListener('click', e => {
     const email = txtEmail.value;
     const pass = txtPass.value;
+    const username = txtUser.value;
     const auth = firebase.auth();
-
     const promise = auth.createUserWithEmailAndPassword(email, pass);
+    promise.then(e => {
+      var user = firebase.auth().currentUser;
+      user.updateProfile({
+        displayName:"" + username,
+      })
+    });
     promise.catch(e => document.getElementById('msg').innerHTML = "" + e.message);
+
   });
 
   // add logout event
@@ -64,6 +72,7 @@
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log("logged in");
+      console.log(firebaseUser.displayName);
       //window.location.href ="hangman.html";
     } else {
       console.log('not logged in');

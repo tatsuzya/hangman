@@ -11,7 +11,7 @@ var add = function() {
 var clickevent = function(e){
   guess = e.target.innerHTML;
   validate();
-  document.getElementById('' + e.target.id).style.color = "black";
+  document.getElementById('' + e.target.id).style.color = "#36393E";
   document.getElementById('' + e.target.id).removeEventListener('click', clickevent);
 }
 
@@ -19,7 +19,7 @@ var clickevent = function(e){
 var gameover = function() {
   var l = document.getElementById('alphabet').getElementsByTagName('li');
   for (var i = 0; i < l.length; i++) {
-    l[i].style.color = "black";
+    l[i].style.color = "#36393E";
     l[i].removeEventListener('click', clickevent);
   }
 }
