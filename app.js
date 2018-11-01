@@ -14,6 +14,26 @@
   const btnLogin = document.getElementById('btnLogin');
   const btnSignup = document.getElementById('btnSignup');
   const btnLogout = document.getElementById('btnLogout');
+  const newUser = document.getElementById('new');
+  const oldUser = document.getElementById('exist');
+
+  // add new event
+  newUser.addEventListener('click', e => {
+    newUser.style.display = "none";
+    btnLogin.style.display = "none";
+    btnSignup.style.display = "block";
+    oldUser.style.display = "block";
+    e.preventDefault();
+  });
+
+  // add exist event
+  oldUser.addEventListener('click', e => {
+    oldUser.style.display = "none";
+    btnLogin.style.display = "block";
+    btnSignup.style.display = "none";
+    newUser.style.display = "block";
+    e.preventDefault();
+  });
 
   // add login event
   btnLogin.addEventListener('click', e => {
@@ -25,7 +45,7 @@
     promise.catch(e => document.getElementById('msg').innerHTML = "" + e.message);
   });
 
-  // add login event
+  // add sign up event
   btnSignup.addEventListener('click', e => {
     const email = txtEmail.value;
     const pass = txtPass.value;
@@ -35,6 +55,7 @@
     promise.catch(e => document.getElementById('msg').innerHTML = "" + e.message);
   });
 
+  // add logout event
   btnLogout.addEventListener('click', e => {
     firebase.auth().signOut();
   });
@@ -43,11 +64,10 @@
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log("logged in");
-      btnLogout.style.display = "block";
       //window.location.href ="hangman.html";
     } else {
       console.log('not logged in');
-      btnLogout.style.display = "none";
+      //window.location.href ="test.html";
     }
   });
 }());
