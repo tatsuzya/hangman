@@ -1,0 +1,17 @@
+.field {
+  text-align:center;
+  margin-top:30%;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:10px;
+}
+
+#btnLogout{
+  display:none;
+}
+
+#btnSignup{
+  display:none;
+}
