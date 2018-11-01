@@ -9,6 +9,7 @@
   };
   firebase.initializeApp(config);
 
+
   const txtUser = document.getElementById('txtUser');
   const txtPass = document.getElementById('txtPass');
   const txtEmail = document.getElementById('txtEmail');
@@ -17,66 +18,80 @@
   const btnLogout = document.getElementById('btnLogout');
   const newUser = document.getElementById('new');
   const oldUser = document.getElementById('exist');
+  const user = document.getElementById('user');
 
-  // add new event
-  newUser.addEventListener('click', e => {
-    newUser.style.display = "none";
-    btnLogin.style.display = "none";
-    btnSignup.style.display = "block";
-    oldUser.style.display = "block";
-    e.preventDefault();
-  });
+  if (window.location.href.match('test.html') != null) {
 
-  // add exist event
-  oldUser.addEventListener('click', e => {
-    oldUser.style.display = "none";
-    btnLogin.style.display = "block";
-    btnSignup.style.display = "none";
-    newUser.style.display = "block";
-    e.preventDefault();
-  });
-
-  // add login event
-  btnLogin.addEventListener('click', e => {
-    const email = txtEmail.value;
-    const pass = txtPass.value;
-    const auth = firebase.auth();
-
-    const promise = auth.signInWithEmailAndPassword(email, pass);
-    promise.catch(e => document.getElementById('msg').innerHTML = "" + e.message);
-  });
-
-  // add sign up event
-  btnSignup.addEventListener('click', e => {
-    const email = txtEmail.value;
-    const pass = txtPass.value;
-    const username = txtUser.value;
-    const auth = firebase.auth();
-    const promise = auth.createUserWithEmailAndPassword(email, pass);
-    promise.then(e => {
-      var user = firebase.auth().currentUser;
-      user.updateProfile({
-        displayName:"" + username,
-      })
+    // add new event
+    newUser.addEventListener('click', e => {
+      newUser.style.display = "none";
+      btnLogin.style.display = "none";
+      btnSignup.style.display = "block";
+      oldUser.style.display = "block";
+      user.style.display = "block";
+      e.preventDefault();
     });
-    promise.catch(e => document.getElementById('msg').innerHTML = "" + e.message);
 
-  });
+    // add exist event
+    oldUser.addEventListener('click', e => {
+      oldUser.style.display = "none";
+      btnLogin.style.display = "block";
+      btnSignup.style.display = "none";
+      newUser.style.display = "block";
+      user.style.display = "none";
+      e.preventDefault();
+    });
 
-  // add logout event
-  btnLogout.addEventListener('click', e => {
-    firebase.auth().signOut();
-  });
+    // add login event
+    btnLogin.addEventListener('click', e => {
+      const email = txtEmail.value;
+      const pass = txtPass.value;
+      const auth = firebase.auth();
 
+      const promise = auth.signInWithEmailAndPassword(email, pass);
+      promise.catch(e => document.getElementById('msg').innerHTML = "" + e.message);
+    });
+
+    // add sign up event
+    btnSignup.addEventListener('click', e => {
+      const email = txtEmail.value;
+      const pass = txtPass.value;
+      const username = txtUser.value;
+      const auth = firebase.auth();
+      const promise = auth.createUserWithEmailAndPassword(email, pass);
+      promise.then(e => {
+        var user = firebase.auth().currentUser;
+        user.updateProfile({
+          displayName: "" + username,
+        })
+      });
+      promise.catch(e => document.getElementById('msg').innerHTML = "" + e.message);
+    });
+  }
+
+  if (window.location.href.match('hangman.html') != null) {
+    // add logout event
+    btnLogout.addEventListener('click', e => {
+      firebase.auth().signOut();
+    });
+  }
+  
   // add realtime addEventListener
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       console.log("logged in");
       console.log(firebaseUser.displayName);
-      //window.location.href ="hangman.html";
+      if (window.location.href.match('test.html') != null) {
+        window.location.href = "hangman.html";
+      }
+      if (window.location.href.match('hangman.html') != null) {
+        document.getElementById('displayname').innerHTML = "Welcome! " + firebaseUser.displayName;
+      }
     } else {
       console.log('not logged in');
-      //window.location.href ="test.html";
+      if (window.location.href.match('hangman.html') != null) {
+        window.location.href = "test.html";
+      }
     }
   });
 }());

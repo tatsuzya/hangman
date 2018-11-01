@@ -1,3 +1,4 @@
+
 /* add event listenter to alphabets*/
 var add = function() {
   var l = document.getElementById('alphabet').getElementsByTagName('li');
@@ -81,11 +82,13 @@ var play = function() {
 
 /* load all function during start up */
 window.onload = function() {
-  loadWord();
-  life = 7;
-  buttons();
-  play();
-  add();
-  lives();
-  replay();
+  if(window.location.href.match('hangman.html')!= null){
+    loadWord();
+    life = 7;
+    buttons();
+    play();
+    add();
+    lives();
+    replay();
+  }
 }

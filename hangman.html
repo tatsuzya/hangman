@@ -15,21 +15,14 @@
   <script src="controller/controller.js"></script>
   <script src="view/view.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCMNI2NzZ40-5kmz5EyE2PQKg0Qd01ilbA",
-    authDomain: "hangman-40aa1.firebaseapp.com",
-    databaseURL: "https://hangman-40aa1.firebaseio.com",
-    projectId: "hangman-40aa1",
-    storageBucket: "hangman-40aa1.appspot.com",
-    messagingSenderId: "794869880727"
-  };
-  firebase.initializeApp(config);
-  </script>
+
 </head>
 
 <body>
+  <div id="userpanel">
+    <div id="displayname"></div>
+    <button id="btnLogout">log out</button>
+  </div>
   <div class="wrapper">
     <h1>Hangman Game</h1>
     <div id="hint">
@@ -48,6 +41,7 @@
     <div id="test">
     </div>
   </div>
+  <script src="app.js"></script>
 </body>
 
 </html>
