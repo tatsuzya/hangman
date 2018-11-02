@@ -96,6 +96,15 @@ h1 {
   margin-left: 5px;
 }
 
+#Save{
+  display:inline-block;
+  margin-left:5px;
+}
+
+#ranking{
+  display:inline-block;
+}
+
 button {
   color: #fff !important;
   text-transform: uppercase;

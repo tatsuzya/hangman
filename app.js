@@ -9,17 +9,20 @@
   };
   firebase.initializeApp(config);
 
-
+  // const var for elements
   const txtUser = document.getElementById('txtUser');
   const txtPass = document.getElementById('txtPass');
   const txtEmail = document.getElementById('txtEmail');
   const btnLogin = document.getElementById('btnLogin');
   const btnSignup = document.getElementById('btnSignup');
   const btnLogout = document.getElementById('btnLogout');
+  const btnSave = document.getElementById('save');
+  const btnRank = document.getElementById('ranking');
   const newUser = document.getElementById('new');
   const oldUser = document.getElementById('exist');
   const user = document.getElementById('user');
 
+  // function for test.html
   if (window.location.href.match('test.html') != null) {
 
     // add new event
@@ -69,13 +72,32 @@
     });
   }
 
+  // funcion for hangmant.html
   if (window.location.href.match('hangman.html') != null) {
     // add logout event
     btnLogout.addEventListener('click', e => {
       firebase.auth().signOut();
     });
+
+    // add save event
+    btnSave.addEventListener('click', e => {
+      var user = firebase.auth().currentUser;
+      firebase.database().ref('users/' + user.uid).set({
+        name: user.displayName,
+        score: score
+      });
+    });
+
+    // add rank event
+    btnRank.addEventListener('click', e => {
+      window.location.href = "ranking.html";
+    });
   }
-  
+
+  if(window.location.href.match('ranking.html')!= null){
+    
+  }
+
   // add realtime addEventListener
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
@@ -86,6 +108,13 @@
       }
       if (window.location.href.match('hangman.html') != null) {
         document.getElementById('displayname').innerHTML = "Welcome! " + firebaseUser.displayName;
+        var user = firebase.auth().currentUser;
+        var ref = firebase.database().ref('users/' + user.uid);
+        ref.on("value", snapshot => {
+          console.log("" + score);
+          score = snapshot.val().score;
+          document.getElementById('score').innerHTML = "score: " + score;
+        });
       }
     } else {
       console.log('not logged in');

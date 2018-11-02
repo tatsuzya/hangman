@@ -22,12 +22,12 @@ let score = 0;
 
 
 
-function loadWord(){
+function loadWord() {
   $.ajax({
     url: 'https://hangman-40aa1.firebaseio.com/wordData.json',
     type: "GET",
     success: function(result) {
-      for(let i = 0; i < Object.keys(result).length; i++){
+      for (let i = 0; i < Object.keys(result).length; i++) {
         words.push(Object.values(result)[i].word);
         hints.push(Object.values(result)[i].hint);
       }
@@ -35,24 +35,6 @@ function loadWord(){
     error: function(error) {
       alert("error: " + error);
     },
-    async:false
+    async: false
   });
 }
-
-function testFunction() {
-  var param = {
-    word:"",
-    hint:""
-  };
-  $.ajax({
-    url: 'https://hangman-40aa1.firebaseio.com/wordData.json',
-    type: "POST",
-    data: JSON.stringify(param),
-    success: function() {
-      alert("success");
-    },
-    error: function(error) {
-      alert("error: " + error);
-    }
-  });
-};
