@@ -1,4 +1,5 @@
 html, body {
+  font-family:"Lucida Console", Monaco, monospace !important;
   background-color: #36393E ! important;
   color: white !important;
 }
@@ -26,12 +27,13 @@ h1 {
 #alphabet li {
   float: left;
   text-align: center;
-  margin: 0 15px 15px 0;
+  margin: 0 20px 20px 0;
   width: 20px;
   height: 20px;
   list-style: none;
   cursor: pointer;
   background-color: #36393E;
+  font-size:30px;
 }
 
 #lives {
@@ -86,14 +88,15 @@ h1 {
 #displayname {
   font-size: 30px;
   display: inline-block;
-  margin-top: 20px;
-  margin-bottom: 50px;
-  margin-left: 10px;
+  margin-left: 20px;
+  margin-right:20px;
+  vertical-align: middle;
 }
 
 #btnLogout {
   display: inline-block;
   margin-left: 5px;
+
 }
 
 #Save{
@@ -105,13 +108,18 @@ h1 {
   display:inline-block;
 }
 
+#userpanel{
+  margin-bottom:120px;
+}
+
 button {
   color: #fff !important;
   text-transform: uppercase;
   background: #ed3330;
-  padding: 5px;
   border-radius: 5px;
+  padding:5px;
   display: inline-block;
+  vertical-align: middle;
   border: none;
 }
 
